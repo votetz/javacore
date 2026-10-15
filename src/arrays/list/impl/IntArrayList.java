@@ -13,7 +13,8 @@ public class IntArrayList implements IntList {
 
     public IntArrayList(int initialCapacity) {
         if (initialCapacity < 0) {
-            throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
+            throw new IllegalArgumentException("Illegal Capacity: "
+                    + initialCapacity);
         }
         elements = new int[initialCapacity];
         size = 0;
