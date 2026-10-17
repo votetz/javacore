@@ -3,6 +3,8 @@
 *.iml
 out/
 target/
+build/
+.gradle/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .kotlin
