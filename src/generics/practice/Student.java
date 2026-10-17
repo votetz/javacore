@@ -1,9 +1,12 @@
 package generics.practice;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+@Getter
 public class Student implements Comparable<Student> {
     private final String name;
     private final double grade;
@@ -20,16 +23,26 @@ public class Student implements Comparable<Student> {
 
     @Override
     public int compareTo(Student other) {
-        return Double.compare(grade, other.grade);
+        int result = Double.compare(grade, other.grade);
+        if (result != 0) {
+            return result;
+        }
+        return name.compareTo(other.name);
     }
-    
+
     public static void main(String[] args) {
         List<Student> students = new ArrayList<>();
+        students.add(new Student("Max", 60));
         students.add(new Student("Alex", 60));
         students.add(new Student("Bob", 75));
         students.add(new Student("Sam", 50));
 
-        Collections.sort(students);
+        students.sort(
+                Comparator.comparingDouble(Student::getGrade)
+                        .reversed()
+                        .thenComparing(Student::getName)
+        );
+
         System.out.println(students);
     }
 }
